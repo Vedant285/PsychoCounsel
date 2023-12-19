@@ -27,7 +27,7 @@ PsycoCouncil is a psychological counseling platform that uses Computer Vision an
 
 1. **Clone the Repository**:  
    ```
-   git clone https://github.com/Louisljz/EmoPulse.git
+   https://github.com/Vedant285/PsychoCounsel.git
    ```
 
 2. **Install Virtual Environment**:  
