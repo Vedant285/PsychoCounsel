@@ -4,7 +4,7 @@
 PsycoCouncil is a psychological counseling platform that uses Computer Vision and Signal Processing for emotion recognition, and heart rate analysis.
 
 ## Project Link
-1. [Webapp]() 
+1. [Webapp](https://vedant-council.streamlit.app/) 
    *Reboot if faced with memory issues*
 
 
