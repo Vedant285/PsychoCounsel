@@ -46,18 +46,17 @@ llm_prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Objects
-llm_model = Clarifai(pat=st.secrets["key"], user_id='openai', app_id='chat-completion', model_id='GPT-4')
+llm_model = Clarifai(pat=st.secrets['key'], user_id='openai', app_id='chat-completion', model_id='GPT-4')
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-aai.settings.api_key = st.secrets["AssemblyAIToken"]
+aai.settings.api_key = st.secrets['AssemblyAIToken']
 transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
 
 # Connect TURN Server
-client = Client(st.secrets['TwilioAccountSID'], st.secrets['TwilioAuthToken'])
-token = client.tokens.create()
+
 
 # Initialize threading and session states
 lock = threading.Lock()
@@ -119,8 +118,7 @@ monitor_tab, counsel_tab = st.tabs(['Monitoring', 'Counseling'])
 with monitor_tab:
     st.info('Record  for minimum 1 min or Upload a video of a person more then 1 minute. Emotion Recognition and Pulse Signal Processing are still in BETA stage, so it may present some inaccuracies')
     stream = webrtc_streamer(key="stream", video_frame_callback=process_feed,
-                            media_stream_constraints={'video': True, 'audio': False},
-                            rtc_configuration={"iceServers": token.ice_servers}
+                            media_stream_constraints={'video': True, 'audio': False}
                             )
     
     # Live UI output
