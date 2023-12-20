@@ -40,15 +40,7 @@ with open('text/human_template.txt', 'r') as f:
 with open('text/instructions.txt', 'r') as f:
     instructions = f.read()
 
-# llm_prompt = ChatPromptTemplate.from_messages([
-#     ("system", system_role),
-#     ("human", human_template),
-# ])
 
-# Initialize Objects
-# llm_model = Clarifai(pat=st.secrets['f74526346a95431fa025cb55446af168'], user_id='openai', app_id='chat-completion', model_id='GPT-4')
-
-# llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
 aai.settings.api_key = st.secrets['AssemblyAIToken']
 transcriber = aai.Transcriber()
@@ -248,16 +240,7 @@ with counsel_tab:
             wait = st.empty()
             wait.info("We are working on your report... your patience is highly appreciated.")
 
-            # Await response from LLM
-            # response = llm_chain.run(
-            #     emotion_report=st.session_state.report['emotion'] if useEmotion else None,
-            #     heart_report=st.session_state.report['heart'] if useHeart else None,
-            #     p_info=p_info if personalize else None,
-            #     thoughts=user_input if tell else None,
-            # )
-            
-            # wait.empty()
-            # st.write(response)
+          
 
             # Text to Speech
             speech_bytes = BytesIO()
