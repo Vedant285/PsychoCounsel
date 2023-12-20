@@ -46,11 +46,11 @@ llm_prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Objects
-llm_model = Clarifai(pat='7872348968134030896252fee6c720f7', user_id='openai', app_id='chat-completion', model_id='GPT-4')
+llm_model = Clarifai(pat=st.secrets["Token"], user_id='openai', app_id='chat-completion', model_id='GPT-4')
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-aai.settings.api_key = '8dd8ef5e05a2427baeb2fd194425de58'
+aai.settings.api_key = st.secrets["AssemblyAI"]
 transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
