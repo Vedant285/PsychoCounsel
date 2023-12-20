@@ -42,7 +42,7 @@ with open('text/instructions.txt', 'r') as f:
 
 
 
-aai.settings.api_key = st.secrets['AssemblyAIToken']
+
 transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
