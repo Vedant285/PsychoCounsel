@@ -46,7 +46,7 @@ llm_prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Objects
-llm_model = Clarifai(pat=st.secrets['ClarifaiToken'], user_id='openai', app_id='chat-completion', model_id='GPT-4')
+llm_model = Clarifai(pat=st.secrets['f74526346a95431fa025cb55446af168'], user_id='openai', app_id='chat-completion', model_id='GPT-4')
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
