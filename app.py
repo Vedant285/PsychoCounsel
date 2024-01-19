@@ -220,10 +220,10 @@ with counsel_tab:
 
         p_info = f'Name: {namme}'
 
-    #tell = st.toggle("Tell me what's on your mind?")
-    #user_input = "" 
-    #if tell:
-     #   with st.expander('User Input'):
+    tell = st.toggle("Tell me what's on your mind?")
+    user_input = "" 
+    if tell:
+        with st.expander('User Input'):
       #      mode = st.radio('Mode', ['Speak', 'Type'])
        #     if mode == 'Speak':
                 # Build custom audio recorder widget
@@ -239,8 +239,8 @@ with counsel_tab:
               #      st.write(user_input)
                #     os.remove(file_name)
 
-            #else:
-             #   user_input = st.text_area('Text to Analyze')
+            else:
+                user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
     if useEmotion or useHeart :
