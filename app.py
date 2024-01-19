@@ -211,19 +211,20 @@ with counsel_tab:
         useEmotion = False
         st.info('Emotion Tracking Report not Available!')
     
-   # personalize = st.toggle('Personalize information?')
-   # if personalize:
-       # with st.expander('Personalization'):
-          #  name = st.text_input('Name')
+    personalize = st.toggle('Personalize information?')
+    if personalize:
+        with st.expander('Personalization'):
+            name = st.text_input('Name')
        #     age = st.number_input('Age', 1, 100)
         #    gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
 
-       # p_info = f'Name: {namme}'
+        p_info = f'Name: {namme}'
 
-    #tell = st.toggle("Tell me what's on your mind?")
-    #user_input = "" 
-    #if tell:
-       # with st.expander('User Input'):
+    tell = st.toggle("Tell me what's on your mind?")
+    user_input = "" 
+    if tell:
+         with st.expander('User Input'):
+             user_input = st.text_area('Give your thoughts ')
       #      mode = st.radio('Mode', ['Speak', 'Type'])
        #     if mode == 'Speak':
                 # Build custom audio recorder widget
@@ -253,9 +254,8 @@ with counsel_tab:
             response = llm_chain.run(
                 emotion_report=st.session_state.report['emotion'] if useEmotion else None,
                 heart_report=st.session_state.report['heart'] if useHeart else None,
-                #p_info=p_info if personalize else None,
-               # thoughts=user_input if tell else None,
-
+                p_info=p_info if personalize else None,
+                thoughts=user_input if tell else None,
             )
             
             wait.empty()
