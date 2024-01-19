@@ -178,7 +178,7 @@ with monitor_tab:
             avg_heart_rate, sdnn, rmssd, bsi, lf_hf_ratio = heart_calculator.estimate_heart_rate(st.session_state.tracker['roi_frames'])
             st.session_state.report['heart'] = {
                                                     "heart_rate": round(avg_heart_rate, 2),
-                                                    #"sdnn": round(sdnn, 2),
+                                                    "sdnn": round(sdnn, 2),
                                                     #"rmssd": round(rmssd, 2),
                                                     #"bsi": round(bsi, 2),
                                                     #"lf_hf_ratio": round(lf_hf_ratio, 2)
@@ -191,5 +191,80 @@ with monitor_tab:
         
     if st.session_state.report['heart']:
         display_heart_report()
+
+    
+with counsel_tab:
+    # User can choose what data to include in LLM prompt
+    if st.session_state.report['heart']:
+        useHeart = st.toggle('Send Heart Metrics Report?')
+        with st.expander('Heart Metrics Report'):
+            display_heart_report()
+    else:
+        useHeart = False
+        st.info('Heart Metrics Report not Available!')
+
+    if st.session_state.report['emotion']:
+        useEmotion = st.toggle('Send Emotion Tracking Report?')
+        with st.expander('Emotion Tracking Report'):
+            display_emotion_report()
+    else:
+        useEmotion = False
+        st.info('Emotion Tracking Report not Available!')
+    
+    #personalize = st.toggle('Personalize information?')
+    #if personalize:
+     #   with st.expander('Personalization'):
+      #      name = st.text_input('Name')
+       #     age = st.number_input('Age', 1, 100)
+        #    gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
+
+        #p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
+
+    #tell = st.toggle("Tell me what's on your mind?")
+    #user_input = "" 
+    #if tell:
+     #   with st.expander('User Input'):
+      #      mode = st.radio('Mode', ['Speak', 'Type'])
+       #     if mode == 'Speak':
+                # Build custom audio recorder widget
+        #        audio_bytes = st_audiorec()
+         #       if audio_bytes:
+          #          file_name = 'temp_transcript.wav'
+                    # Save audio to temp file
+           #         with open(file_name, "wb") as f:
+            #            f.write(audio_bytes)
+                    
+                    # speech to text
+             #       user_input = transcriber.transcribe(file_name).text
+              #      st.write(user_input)
+               #     os.remove(file_name)
+
+            #else:
+             #   user_input = st.text_area('Text to Analyze')
+
+    # If minimum options selected
+    if useEmotion or useHeart or tell:
+        counsel = st.button('Counsel')
+        if counsel:
+            wait = st.empty()
+            wait.info("We are working on your report... your patience is highly appreciated.")
+
+            # Await response from LLM
+            response = llm_chain.run(
+                emotion_report=st.session_state.report['emotion'] if useEmotion else None,
+                heart_report=st.session_state.report['heart'] if useHeart else None,
+                p_info=p_info if personalize else None,
+                thoughts=user_input if tell else None,
+            )
+            
+            #wait.empty()
+            #st.write(response)
+
+            # Text to Speech
+            #speech_bytes = BytesIO()
+            #tts = gTTS(response)
+            #tts.write_to_fp(speech_bytes)
+            #st.audio(speech_bytes)
+
 
 
