@@ -109,8 +109,8 @@ def display_heart_report():
     st.write(f"Click counseling tab above to get detailed report")
 
 # Build UI
-st.set_page_config('PsycoCouncil')
-st.title('PsycoCouncil')
+st.set_page_config('PsychoCouncil')
+st.title('PsychoCouncil')
 
 with st.expander('Instructions'):
     st.write(instructions)
