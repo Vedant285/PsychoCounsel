@@ -103,10 +103,10 @@ def display_heart_report():
 
     st.write(f"Estimated Heart Rate: **{heart_report['heart_rate']}** BPM")
     st.write(f"HRV: **{heart_report['sdnn']}**: A measure of heart rate variability, indicating the overall variability in heartbeats")
-    st.write(f"RMSSD: **{heart_report['rmssd']}**: A measure of parasympathetic nervous system activity")
-    st.write(f"Baevsky Stress Index (BSI): **{heart_report['bsi']}**: Stress level based on heart rate variability.")
-    st.write(f"LF/HF Ratio: **{heart_report['lf_hf_ratio']}**: Balance between sympathetic and parasympathetic nervous system activity.")
-    st.write(f"Click counseling tab above to get detailed report")
+    #st.write(f"RMSSD: **{heart_report['rmssd']}**: A measure of parasympathetic nervous system activity")
+    #st.write(f"Baevsky Stress Index (BSI): **{heart_report['bsi']}**: Stress level based on heart rate variability.")
+    #st.write(f"LF/HF Ratio: **{heart_report['lf_hf_ratio']}**: Balance between sympathetic and parasympathetic nervous system activity.")
+    #st.write(f"Click counseling tab above to get detailed report")
 
 # Build UI
 st.set_page_config('PsycoCouncil')
@@ -118,7 +118,7 @@ with st.expander('Instructions'):
 monitor_tab, counsel_tab = st.tabs(['Monitoring', 'Counseling'])
 
 with monitor_tab:
-    st.info('Record  for minimum 1 min or Upload a video of a person more then 1 minute. Emotion Recognition and Pulse Signal Processing are still in BETA stage, so it may present some inaccuracies')
+    st.info('Record  for minimum 1 min video of a person more then 1 minute. Emotion Recognition and Pulse Signal Processing are still in BETA stage, so it may present some inaccuracies')
     stream = webrtc_streamer(key="stream", video_frame_callback=process_feed,
                             media_stream_constraints={'video': True, 'audio': False},
                             rtc_configuration={"iceServers": token.ice_servers}
@@ -178,10 +178,10 @@ with monitor_tab:
             avg_heart_rate, sdnn, rmssd, bsi, lf_hf_ratio = heart_calculator.estimate_heart_rate(st.session_state.tracker['roi_frames'])
             st.session_state.report['heart'] = {
                                                     "heart_rate": round(avg_heart_rate, 2),
-                                                    "sdnn": round(sdnn, 2),
-                                                    "rmssd": round(rmssd, 2),
-                                                    "bsi": round(bsi, 2),
-                                                    "lf_hf_ratio": round(lf_hf_ratio, 2)
+                                                    #"sdnn": round(sdnn, 2),
+                                                    #"rmssd": round(rmssd, 2),
+                                                    #"bsi": round(bsi, 2),
+                                                    #"lf_hf_ratio": round(lf_hf_ratio, 2)
                                                 }
         except ValueError:
             st.warning('Heart Metrics cannot be generated due to lack of Pulse Data')
@@ -195,52 +195,52 @@ with monitor_tab:
 
 with counsel_tab:
     # User can choose what data to include in LLM prompt
-    if st.session_state.report['heart']:
-        useHeart = st.toggle('Send Heart Metrics Report?')
-        with st.expander('Heart Metrics Report'):
-            display_heart_report()
-    else:
-        useHeart = False
-        st.info('Heart Metrics Report not Available!')
+    #if st.session_state.report['heart']:
+     #   useHeart = st.toggle('Send Heart Metrics Report?')
+      #  with st.expander('Heart Metrics Report'):
+       #     display_heart_report()
+    #else:
+     #   useHeart = False
+      #  st.info('Heart Metrics Report not Available!')
 
-    if st.session_state.report['emotion']:
-        useEmotion = st.toggle('Send Emotion Tracking Report?')
-        with st.expander('Emotion Tracking Report'):
-            display_emotion_report()
-    else:
-        useEmotion = False
-        st.info('Emotion Tracking Report not Available!')
+    #if st.session_state.report['emotion']:
+    #    useEmotion = st.toggle('Send Emotion Tracking Report?')
+     #   with st.expander('Emotion Tracking Report'):
+      #      display_emotion_report()
+    #else:
+     #   useEmotion = False
+      #  st.info('Emotion Tracking Report not Available!')
     
-    personalize = st.toggle('Personalize information?')
-    if personalize:
-        with st.expander('Personalization'):
-            name = st.text_input('Name')
-            age = st.number_input('Age', 1, 100)
-            gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
+    #personalize = st.toggle('Personalize information?')
+    #if personalize:
+     #   with st.expander('Personalization'):
+      #      name = st.text_input('Name')
+       #     age = st.number_input('Age', 1, 100)
+        #    gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
 
-        p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
+        #p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
 
-    tell = st.toggle("Tell me what's on your mind?")
-    user_input = "" 
-    if tell:
-        with st.expander('User Input'):
-            mode = st.radio('Mode', ['Speak', 'Type'])
-            if mode == 'Speak':
+    #tell = st.toggle("Tell me what's on your mind?")
+    #user_input = "" 
+    #if tell:
+     #   with st.expander('User Input'):
+      #      mode = st.radio('Mode', ['Speak', 'Type'])
+       #     if mode == 'Speak':
                 # Build custom audio recorder widget
-                audio_bytes = st_audiorec()
-                if audio_bytes:
-                    file_name = 'temp_transcript.wav'
+        #        audio_bytes = st_audiorec()
+         #       if audio_bytes:
+          #          file_name = 'temp_transcript.wav'
                     # Save audio to temp file
-                    with open(file_name, "wb") as f:
-                        f.write(audio_bytes)
+           #         with open(file_name, "wb") as f:
+            #            f.write(audio_bytes)
                     
                     # speech to text
-                    user_input = transcriber.transcribe(file_name).text
-                    st.write(user_input)
-                    os.remove(file_name)
+             #       user_input = transcriber.transcribe(file_name).text
+              #      st.write(user_input)
+               #     os.remove(file_name)
 
-            else:
-                user_input = st.text_area('Text to Analyze')
+            #else:
+             #   user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
     if useEmotion or useHeart or tell:
