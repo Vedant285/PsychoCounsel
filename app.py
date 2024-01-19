@@ -179,9 +179,9 @@ with monitor_tab:
             st.session_state.report['heart'] = {
                                                     "heart_rate": round(avg_heart_rate, 2),
                                                     "sdnn": round(sdnn, 2),
-                                                    #"rmssd": round(rmssd, 2),
-                                                    #"bsi": round(bsi, 2),
-                                                    #"lf_hf_ratio": round(lf_hf_ratio, 2)
+                                                    "rmssd": round(rmssd, 2),
+                                                    "bsi": round(bsi, 2),
+                                                    "lf_hf_ratio": round(lf_hf_ratio, 2)
                                                 }
         except ValueError:
             st.warning('Heart Metrics cannot be generated due to lack of Pulse Data')
@@ -214,7 +214,7 @@ with counsel_tab:
 
 
     # If minimum options selected
-    if useEmotion or useHeart or tell:
+    if useEmotion or useHeart :
         counsel = st.button('Counsel')
         if counsel:
             wait = st.empty()
