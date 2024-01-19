@@ -243,7 +243,7 @@ with counsel_tab:
              #   user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
-    if useEmotion or useHeart or tell:
+    if useEmotion or useHeart :
         counsel = st.button('Counsel')
         if counsel:
             wait = st.empty()
