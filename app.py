@@ -253,8 +253,7 @@ with counsel_tab:
             response = llm_chain.run(
                 emotion_report=st.session_state.report['emotion'] if useEmotion else None,
                 heart_report=st.session_state.report['heart'] if useHeart else None,
-                p_info= None,
-                thoughts= None,
+    
             )
             
             #wait.empty()
