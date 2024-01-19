@@ -103,10 +103,10 @@ def display_heart_report():
 
     st.write(f"Estimated Heart Rate: **{heart_report['heart_rate']}** BPM")
     st.write(f"HRV: **{heart_report['sdnn']}**: A measure of heart rate variability, indicating the overall variability in heartbeats")
-    #st.write(f"RMSSD: **{heart_report['rmssd']}**: A measure of parasympathetic nervous system activity")
-    #st.write(f"Baevsky Stress Index (BSI): **{heart_report['bsi']}**: Stress level based on heart rate variability.")
-    #st.write(f"LF/HF Ratio: **{heart_report['lf_hf_ratio']}**: Balance between sympathetic and parasympathetic nervous system activity.")
-    #st.write(f"Click counseling tab above to get detailed report")
+    st.write(f"RMSSD: **{heart_report['rmssd']}**: A measure of parasympathetic nervous system activity")
+    st.write(f"Baevsky Stress Index (BSI): **{heart_report['bsi']}**: Stress level based on heart rate variability.")
+    st.write(f"LF/HF Ratio: **{heart_report['lf_hf_ratio']}**: Balance between sympathetic and parasympathetic nervous system activity.")
+    st.write(f"Click counseling tab above to get detailed report")
 
 # Build UI
 st.set_page_config('PsycoCouncil')
