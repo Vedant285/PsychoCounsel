@@ -224,24 +224,23 @@ with counsel_tab:
     user_input = "" 
     if tell:
          with st.expander('User Input'):
-             user_input = st.text_area('Give your thoughts ')
-      #      mode = st.radio('Mode', ['Speak', 'Type'])
-       #     if mode == 'Speak':
+            mode = st.radio('Mode', ['Speak', 'Type'])
+            if mode == 'Speak':
                 # Build custom audio recorder widget
-        #        audio_bytes = st_audiorec()
-         #       if audio_bytes:
-          #          file_name = 'temp_transcript.wav'
+                audio_bytes = st_audiorec()
+                if audio_bytes:
+                    file_name = 'temp_transcript.wav'
                     # Save audio to temp file
-           #         with open(file_name, "wb") as f:
-            #            f.write(audio_bytes)
+                    with open(file_name, "wb") as f:
+                        f.write(audio_bytes)
                     
                     # speech to text
-             #       user_input = transcriber.transcribe(file_name).text
-              #      st.write(user_input)
-               #     os.remove(file_name)
+                    user_input = transcriber.transcribe(file_name).text
+                    st.write(user_input)
+                    os.remove(file_name)
 
-            #else:
-                #user_input = st.text_area('Text to Analyze')
+            else:
+                user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
     if useEmotion or useHeart :
@@ -262,10 +261,10 @@ with counsel_tab:
             st.write(response)
 
             # Text to Speech
-            #speech_bytes = BytesIO()
-            #tts = gTTS(response)
-            #tts.write_to_fp(speech_bytes)
-            #st.audio(speech_bytes)
+            speech_bytes = BytesIO()
+            tts = gTTS(response)
+            tts.write_to_fp(speech_bytes)
+            st.audio(speech_bytes)
 
 
 
