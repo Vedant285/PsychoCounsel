@@ -50,8 +50,8 @@ llm_model = Clarifai(pat=st.secrets["Token"], user_id='openai', app_id='chat-com
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-aai.settings.api_key = st.secrets["AssemblyAI"]
-transcriber = aai.Transcriber()
+#aai.settings.api_key = st.secrets["AssemblyAI"]
+#transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
 
@@ -175,7 +175,7 @@ with monitor_tab:
         emo_percent = count_percent(st.session_state.tracker['emotion'])
         st.session_state.report['emotion'] = emo_percent
         try:
-            avg_heart_rate, sdnn, rmssd, bsi, lf_hf_ratio = heart_calculator.estimate_heart_rate(st.session_state.tracker['roi_frames'])
+            avg_heart_rate, sdnn = heart_calculator.estimate_heart_rate(st.session_state.tracker['roi_frames'])
             st.session_state.report['heart'] = {
                                                     "heart_rate": round(avg_heart_rate, 2),
                                                     "sdnn": round(sdnn, 2),
@@ -253,8 +253,8 @@ with counsel_tab:
             response = llm_chain.run(
                 emotion_report=st.session_state.report['emotion'] if useEmotion else None,
                 heart_report=st.session_state.report['heart'] if useHeart else None,
-                p_info=p_info if personalize else None,
-                thoughts=user_input if tell else None,
+                #p_info=p_info if personalize else None,
+                #thoughts=user_input if tell else None,
             )
             
             #wait.empty()
