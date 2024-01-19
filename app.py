@@ -50,8 +50,8 @@ llm_model = Clarifai(pat=st.secrets["Token"], user_id='openai', app_id='chat-com
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-#aai.settings.api_key = st.secrets["AssemblyAI"]
-#transcriber = aai.Transcriber()
+aai.settings.api_key = st.secrets["AssemblyAI"]
+transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
 
