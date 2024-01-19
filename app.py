@@ -192,7 +192,7 @@ with monitor_tab:
     if st.session_state.report['heart']:
         display_heart_report()
 
-    with counsel_tab:
+with counsel_tab:
     # User can choose what data to include in LLM prompt
     if st.session_state.report['heart']:
         useHeart = st.toggle('Send Heart Metrics Report?')
