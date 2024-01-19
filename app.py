@@ -211,10 +211,39 @@ with counsel_tab:
         useEmotion = False
         st.info('Emotion Tracking Report not Available!')
     
+    personalize = st.toggle('Personalize information?')
+    if personalize:
+        with st.expander('Personalization'):
+            name = st.text_input('Name')
+            age = st.number_input('Age', 1, 100)
+            gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
 
+        p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
+
+    tell = st.toggle("Tell me what's on your mind?")
+    user_input = "" 
+    if tell:
+        with st.expander('User Input'):
+            mode = st.radio('Mode', ['Speak', 'Type'])
+            if mode == 'Speak':
+                # Build custom audio recorder widget
+                audio_bytes = st_audiorec()
+                if audio_bytes:
+                    file_name = 'temp_transcript.wav'
+                    # Save audio to temp file
+                    with open(file_name, "wb") as f:
+                        f.write(audio_bytes)
+                    
+                    # speech to text
+                    user_input = transcriber.transcribe(file_name).text
+                    st.write(user_input)
+                    os.remove(file_name)
+
+            else:
+                user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
-    if useEmotion or useHeart :
+    if useEmotion or useHeart or tell:
         counsel = st.button('Counsel')
         if counsel:
             wait = st.empty()
@@ -224,6 +253,8 @@ with counsel_tab:
             response = llm_chain.run(
                 emotion_report=st.session_state.report['emotion'] if useEmotion else None,
                 heart_report=st.session_state.report['heart'] if useHeart else None,
+                p_info=p_info if personalize else None,
+                thoughts=user_input if tell else None,
             )
             
             wait.empty()
