@@ -215,15 +215,15 @@ with counsel_tab:
     if personalize:
         with st.expander('Personalization'):
             name = st.text_input('Name')
-       #     age = st.number_input('Age', 1, 100)
-        #    gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
+            age = st.number_input('Age', 1, 100)
+            gender = st.radio('Gender', ['Male', 'Female'], horizontal=True)
 
-        p_info = f'Name: {namme}'
+        p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
 
     tell = st.toggle("Tell me what's on your mind?")
     user_input = "" 
     if tell:
-         with st.expander('User Input'):
+        with st.expander('User Input'):
             mode = st.radio('Mode', ['Speak', 'Type'])
             if mode == 'Speak':
                 # Build custom audio recorder widget
@@ -243,7 +243,7 @@ with counsel_tab:
                 user_input = st.text_area('Text to Analyze')
 
     # If minimum options selected
-    if useEmotion or useHeart :
+    if useEmotion or useHeart or tell:
         counsel = st.button('Counsel')
         if counsel:
             wait = st.empty()
@@ -265,6 +265,3 @@ with counsel_tab:
             tts = gTTS(response)
             tts.write_to_fp(speech_bytes)
             st.audio(speech_bytes)
-
-
-
