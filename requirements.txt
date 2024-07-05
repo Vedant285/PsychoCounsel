@@ -9,3 +9,4 @@ scipy==1.11.2
 twilio==8.8.0
 langchain==0.0.292
 clarifai==9.8.1
+keras==2.9.0
