@@ -3,6 +3,13 @@
 ## Overview
 PsycoCouncil is an advanced psychological counseling platform integrating cutting-edge technologies such as Computer Vision and Signal Processing for precise emotion recognition and heart rate analysis. Through the utilization of these sophisticated methods, PsycoCouncil aims to deliver comprehensive and accurate insights to enhance the counseling experience for individuals seeking psychological support.
 
+## Cite
+  '''
+    S. Dutta, V. Shukla, Y. Pant and V. Tripathi, "Human Psychological Counselling Framework using Computer Vision," 2024 11th International Conference on Computing for Sustainable Global Development (INDIACom), New Delhi, India, 2024, pp. 745-750, doi: 10.23919/INDIACom61295.2024.10498255. keywords: {Employee welfare;Emotion recognition;Merging;Psychology;Signal processing algorithms;Medical treatment;Signal processing;Psychological counseling;Non-verbal Indicators;Computer Vision;Emotion recognition;Heart rate analysis;Facial expression recognition;Gesture analysis;Technology-assisted counseling},
+
+
+  '''
+
 ## Project Link
 1. [Webapp](https://vedant-council.streamlit.app/) 
    *Reboot if faced with memory issues*
