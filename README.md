@@ -20,11 +20,12 @@ PsycoCouncil is an advanced psychological counseling platform integrating cuttin
   ```
 
 ## Project Link
-  [Webapp](https://vedant-council.streamlit.app/) 
+  [Webapp](https://council.streamlit.app/) 
    *Reboot if faced with memory issues*
 
 ## Research Paper
-  [Link](https://ieeexplore.ieee.org/document/10498255)
+  [Human Psychological Counselling Framework using Computer Vision
+](https://ieeexplore.ieee.org/document/10498255)
 
 
 ## Usage
