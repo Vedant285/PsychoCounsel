@@ -6,7 +6,7 @@ PsycoCouncil is an advanced psychological counseling platform integrating cuttin
 ## Cite
   '''
   
-     TY  - CONF
+    TY  - CONF
     TI  - Human Psychological Counselling Framework using Computer Vision
     T2  - 2024 11th International Conference on Computing for Sustainable Global Development (INDIACom)
     SP  - 745
