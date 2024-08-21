@@ -58,7 +58,7 @@ transcriber = aai.Transcriber()
 heart_calculator = HeartMetricsCalculator()
 
 # Connect TURN Server
-client = Client("ACe12271a2b4f57570ba4a04e0755b604d","734e91fe886d3dca2c539b093999bdcd")
+client = Client("ACe12271a2b4f57570ba4a04e0755b604d","734e91fe886d3dca")
 token = client.tokens.create()
 
 
