@@ -1,3 +1,5 @@
+
+
 # Streamlit Widget Components
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
@@ -46,17 +48,17 @@ llm_prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Objects
-llm_model = Clarifai(pat=st.secrets["Token"], user_id='openai', app_id='chat-completion', model_id='GPT-4')
+llm_model = Clarifai(pat="9a1ad15a7a7b4b39b94cbfe086772761", user_id='openai', app_id='chat-completion', model_id='GPT-4')
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-aai.settings.api_key = st.secrets["AssemblyAI"]
+aai.settings.api_key = "8dd8ef5e05a2427baeb2fd194425de58"
 transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
 
 # Connect TURN Server
-client = Client(st.secrets["TwilioSID"], st.secrets["AuthToken"])
+client = Client("ACe12271a2b4f57570ba4a04e0755b604d","734e91fe886d3dca2c539b093999bdcd")
 token = client.tokens.create()
 
 
@@ -88,7 +90,7 @@ def count_percent(labels):
 
     return label_percent
 
-# display tracking reports
+# display emotion tracking reports
 def display_emotion_report():
     emotion_report = st.session_state.report['emotion']
     st.subheader('Percentage of different emotions observed during monitoring')
@@ -97,6 +99,8 @@ def display_emotion_report():
     for i, (emo, percent) in enumerate(emotion_report.items()):
         cols[i].metric(emo, f'{percent}%')
 
+
+# display heart metrics tracking reports
 def display_heart_report():
     heart_report = st.session_state.report['heart']
     st.subheader('Heart Metric Report')
@@ -107,6 +111,7 @@ def display_heart_report():
     st.write(f"Baevsky Stress Index (BSI): **{heart_report['bsi']}**: Stress level based on heart rate variability.")
     st.write(f"LF/HF Ratio: **{heart_report['lf_hf_ratio']}**: Balance between sympathetic and parasympathetic nervous system activity.")
     st.write(f"Click counseling tab above to get detailed report")
+
 
 # Build UI
 st.set_page_config('PsychoCouncil')
@@ -178,8 +183,8 @@ with monitor_tab:
             avg_heart_rate, sdnn, rmssd, bsi, lf_hf_ratio = heart_calculator.estimate_heart_rate(st.session_state.tracker['roi_frames'])
             st.session_state.report['heart'] = {
                                                     "heart_rate": round(avg_heart_rate, 2),
-                                                    "sdnn": round(sdnn, 2),
-                                                    "rmssd": round(rmssd, 2),
+                                                    "sdnn": round(sdnn, 3),
+                                                    "rmssd": round(rmssd, 3),
                                                     "bsi": round(bsi, 2),
                                                     "lf_hf_ratio": round(lf_hf_ratio, 2)
                                                 }
@@ -192,8 +197,9 @@ with monitor_tab:
     if st.session_state.report['heart']:
         display_heart_report()
 
+ # User can choose what data to include in LLM prompt
 with counsel_tab:
-    # User can choose what data to include in LLM prompt
+    #sending ur heart metric report
     if st.session_state.report['heart']:
         useHeart = st.toggle('Send Heart Metrics Report?')
         with st.expander('Heart Metrics Report'):
@@ -201,7 +207,7 @@ with counsel_tab:
     else:
         useHeart = False
         st.info('Heart Metrics Report not Available!')
-
+     #sending ur emotion  report
     if st.session_state.report['emotion']:
         useEmotion = st.toggle('Send Emotion Tracking Report?')
         with st.expander('Emotion Tracking Report'):
@@ -209,7 +215,7 @@ with counsel_tab:
     else:
         useEmotion = False
         st.info('Emotion Tracking Report not Available!')
-    
+     #telling  ur personal ingo like name and age
     personalize = st.toggle('Personalize information?')
     if personalize:
         with st.expander('Personalization'):
@@ -219,6 +225,7 @@ with counsel_tab:
 
         p_info = f'Name: {name}; Age: {age}; Gender: {gender}'
 
+     #telling  ur thoughts how r u feeling
     tell = st.toggle("Tell me what's on your mind?")
     user_input = "" 
     if tell:
