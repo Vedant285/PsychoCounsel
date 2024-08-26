@@ -124,7 +124,7 @@ monitor_tab, counsel_tab = st.tabs(['Monitoring', 'Counseling'])
 with monitor_tab:
     st.info('Record  for minimum 1 min video of a person more then 1 minute. Emotion Recognition and Pulse Signal Processing are still in BETA stage, so it may present some inaccuracies')
     stream = webrtc_streamer(key="stream", video_frame_callback=process_feed,
-                            media_stream_constraints={'video': True, 'audio': False}
+                            media_stream_constraints={'video': True, 'audio': False},
                             rtc_configuration={"iceServers": token.ice_servers}
                             )
     
