@@ -1,5 +1,3 @@
-
-
 # Streamlit Widget Components
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
@@ -48,18 +46,19 @@ llm_prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Objects
-llm_model = Clarifai(pat="9a1ad15a7a7b4b39b94cbfe086772761", user_id='openai', app_id='chat-completion', model_id='GPT-4')
+llm_model = Clarifai(pat=st.secrets['ClarifaiToken'], user_id='openai', 
+                   app_id='chat-completion', model_id='GPT-4')
 
 llm_chain = LLMChain(llm=llm_model, prompt=llm_prompt, verbose=True)
 
-aai.settings.api_key = "8dd8ef5e05a2427baeb2fd194425de58"
+aai.settings.api_key = st.secrets['AssemblyAIToken']
 transcriber = aai.Transcriber()
 
 heart_calculator = HeartMetricsCalculator()
 
 # Connect TURN Server
-#client = Client("ACe12271a2b4f57570ba4a04e0755b604d","734e91fe886d3dca")
-#token = client.tokens.create()
+client = Client(st.secrets['TwilioAccountSID'], st.secrets['TwilioAuthToken'])
+token = client.tokens.create()
 
 
 # Initialize threading and session states
